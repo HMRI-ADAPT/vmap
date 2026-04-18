@@ -1,0 +1,41 @@
+# // build system
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# // project metadata
+[project]
+name = "vmap"
+version = "1.0.0"
+description = "Multi-label non-phage viral protein sequence annotation"
+authors = [
+  {name = "Shrish Dwivedi"},
+  {name = "Andrew P. Horton, PhD"},
+  {name = "Jimmy Gollihar, PhD"}
+]
+
+# // python --vers.
+requires-python = ">=3.11,<3.13"
+
+# // 
+dependencies = [
+  "biopython",
+  "pandas",
+  "numpy",
+  "scikit-learn",
+  "matplotlib",
+  "seaborn",
+  "openpyxl",
+  "halo",
+  "transformers>=4.51,<4.58",
+  "plotly",
+  "huggingface_hub"
+]
+
+# // CLI entry point
+[project.scripts]
+vmap = "vmap.cli:main"
+
+# // Package discovery
+[tool.setuptools.packages]
+find = { where = ["src"] }
