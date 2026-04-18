@@ -1,6 +1,6 @@
 # ViralMap
 
-Multi-label annotation of non-phage viral protein sequences to aid antigen engineering efforts.
+Multi-label annotation of eukaryotic viral protein sequences.
 
 ![Demo](assets/vmap.gif)
 
