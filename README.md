@@ -23,8 +23,8 @@ v1.0
 ViralMap annotates viral protein sequences across 10 residue-level classes in three categories:
 
 - **Topology & Localization:** Signal peptide, transmembrane, cytoplasmic, extracellular
-- **Post-translational Modifications:** N-glycosylation, furin cleavage, chain cleavage, disulfide bond
-- **Structural Features:** Coiled coil, disordered region
+- **Post-translational Modifications:** N-glycosylation, furin cleavage, chain cleavage sites, disulfide bond sites
+- **Structural Features:** Coiled coil, disordered regions
 
 [Model weights](https://huggingface.co/shrishdwivedi/vmap) are downloaded automatically from HuggingFace on first run and cached locally. The paper [dataset](https://huggingface.co/shrishdwivedi/vmap-dataset) is available at HuggingFace.
 
