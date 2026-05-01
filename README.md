@@ -26,7 +26,7 @@ ViralMap annotates viral protein sequences across 10 residue-level classes in th
 - **Post-translational Modifications:** N-glycosylation, furin cleavage, chain cleavage sites, disulfide bond sites
 - **Structural Features:** Coiled coil, disordered regions
 
-[Model weights](https://huggingface.co/shrishdwivedi/vmap) are downloaded automatically from HuggingFace on first run and cached locally. The paper [dataset](https://huggingface.co/shrishdwivedi/vmap-dataset) is available at HuggingFace.
+[Model weights](https://huggingface.co/shrishdwivedi/vmap) are downloaded automatically from HuggingFace on first run and cached locally. The paper [dataset](https://huggingface.co/datasets/shrishdwivedi/vmap-dataset) is available at HuggingFace.
 
 ## Installation
 
