@@ -14,6 +14,8 @@ from .visualize import VMAPViz
 import warnings
 from halo import Halo
 import os
+import re
+import hashlib
 
 # // misc.
 transformers.logging.set_verbosity_error()
@@ -130,8 +132,21 @@ class VMAPInfer():
             row[r["Feature"]] = r["Regions / Positions"]
             row[f"{r['Feature']} (count)"] = r["Count"]
         return row
+    
+    @staticmethod
+    def _safe_filename(header: str, max_len: int = 100) -> str:
+        """
+        sanitize a FASTA header into a safe, length-bounded filename.
+        """
+        name = re.sub(r'[^A-Za-z0-9._-]', '_', header.strip())
+        name = re.sub(r'_+', '_', name).strip('_') or "unnamed"
 
+        if len(name) > max_len:
+            h = hashlib.sha1(header.encode('utf-8')).hexdigest()[:8]
+            name = f"{name[:max_len]}_{h}"
 
+        return name
+    
     # // ################################################################## // 
     # // ############################# HMM ################################ //
     # // ################################################################## // 
@@ -341,7 +356,7 @@ class VMAPInfer():
                         spinner.text = f'Generating annotations [w/ {self.device}]: {proteins_processed}/{total_proteins} proteins ({proteins_processed/total_proteins*100:.2f}%)'
                         
                         # // predict
-                        summary = self.predict_one(seq=sequence, pname=current_header, output_dir=output_dir)
+                        summary = self.predict_one(seq=sequence, pname=self._safe_filename(current_header), output_dir=output_dir)
 
                         # // save to overview
                         summary_rows.append(self._summary_row(current_header, summary))
@@ -362,7 +377,7 @@ class VMAPInfer():
                 sequence = ''.join(current_sequence)
                 proteins_processed += 1
                 spinner.text = f'Generating annotations: {proteins_processed}/{total_proteins} proteins (100.00%)'
-                summary = self.predict_one(seq=sequence, pname=current_header, output_dir=output_dir)
+                summary = self.predict_one(seq=sequence, pname=self._safe_filename(current_header), output_dir=output_dir)
                 summary_rows.append(self._summary_row(current_header, summary))
 
 
